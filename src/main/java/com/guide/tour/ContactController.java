@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class ContactController {
-    private ContactRepository contactRepo;
+    private ContactService contactRepo;
+
     @Autowired
-    public ContactController(ContactRepository contactRepo) {
+    public ContactController(ContactService contactRepo) {
         this.contactRepo = contactRepo;
+        this.contactRepo.createContact();
     }
+
     @RequestMapping(method=RequestMethod.GET)
     public String home(Map<String,Object> model) {
         List<Contact> contacts = contactRepo.findAll();
@@ -24,7 +27,7 @@ public class ContactController {
 
     @RequestMapping(method=RequestMethod.POST)
     public String submit(Contact contact) {
-        contactRepo.save(contact);
+        contactRepo.insertContact(contact);
         return "redirect:/";
     }
 }
