@@ -32,7 +32,11 @@ public class ContactService {
 
     public void createContact() {
         log.info("Creating Contact table: ");
-        jdbcTemplate.execute(createSQL);
+        try {
+            jdbcTemplate.execute(createSQL);
+        } catch (Exception e){
+            log.error("Failed to create Contact table! " + e);
+        }
         log.info("Contact table create complete");
     }
 
@@ -46,15 +50,22 @@ public class ContactService {
         if(contact != null) {
             // Inserting parsed data into contact table
             log.info("Inserting data into Contact table");
-            jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
+            try {
+                jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
+            } catch (Exception e){
+                log.error("Failed to update Contact table! " + e);
+            }
             log.info("Insert successfully into contact table!");
         }
     }
 
     public List<Contact> findAll() {
         List<Contact> entries = new ArrayList<>();
-
-        entries = jdbcTemplate.query(querySQL, new Object[]{}, new BeanPropertyRowMapper(Contact.class));
+        try{
+            entries = jdbcTemplate.query(querySQL, new Object[]{}, new BeanPropertyRowMapper(Contact.class));
+        } catch (Exception e){
+            log.error("Failed to query data from Contact table! " + e);
+        }
 
         if(entries != null && entries.size() > 0) {
             return entries;
