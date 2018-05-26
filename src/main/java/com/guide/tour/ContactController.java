@@ -4,30 +4,39 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/")
 public class ContactController {
     private ContactService contactRepo;
 
     @Autowired
     public ContactController(ContactService contactRepo) {
         this.contactRepo = contactRepo;
-        this.contactRepo.createContact();
     }
 
-    @RequestMapping(method=RequestMethod.GET)
-    public String home(Map<String,Object> model) {
+    @GetMapping("/")
+    public String homepage(){
+        return "TourGuideHome";
+    }
+
+    @GetMapping("/allcontacts")
+    public String listContacts(Map<String,Object> model) {
         List<Contact> contacts = contactRepo.findAll();
         model.put("contacts", contacts);
-        return "home";
+        return "AllContacts";
     }
 
-    @RequestMapping(method=RequestMethod.POST)
-    public String submit(Contact contact) {
-        contactRepo.insertContact(contact);
-        return "redirect:/";
+    @GetMapping("/newcontact")
+    public String createContactForm() {
+        return "CreateContact";
+    }
+
+    @PostMapping("/newcontact")
+    public String createContact(Contact contact) {
+        if(contact != null) {
+            contactRepo.insertContact(contact);
+        }
+        return "TourGuideHome";
     }
 }

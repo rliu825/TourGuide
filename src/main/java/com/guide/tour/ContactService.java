@@ -43,11 +43,12 @@ public class ContactService {
         String phoneNumber = contact.getPhoneNumber();
         String emailAddress = contact.getEmailAddress();
 
-        // Inserting parsed data into contact table
-        log.info("Inserting data into Contact table");
-//        String insert = insertSQL + "(\"" + firstName + "\", \"" + lastName + "\", \"" + phoneNumber + "\", \"" + emailAddress + "\")";
-        jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
-        log.info("Insert successfully into contact table!");
+        if(contact != null) {
+            // Inserting parsed data into contact table
+            log.info("Inserting data into Contact table");
+            jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
+            log.info("Insert successfully into contact table!");
+        }
     }
 
     public List<Contact> findAll() {
