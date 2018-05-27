@@ -38,22 +38,24 @@ public class ContactService {
     }
 
     public void insertContact(Contact contact) {
+
+        if (contact == null) {
+            throw new NullPointerException("contact var is null.");
+        }
         // Parsing contact data
         String firstName = contact.getFirstName();
         String lastName = contact.getLastName();
         String phoneNumber = contact.getPhoneNumber();
         String emailAddress = contact.getEmailAddress();
 
-        if(contact != null) {
-            // Inserting parsed data into contact table
-            log.info("Inserting data into Contact table");
-            try {
-                jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
-            } catch (Exception e){
-                log.error("Failed to update Contact table! " + e);
-            }
-            log.info("Insert successfully into contact table!");
+        // Inserting parsed data into contact table
+        log.info("Inserting data into Contact table");
+        try {
+            jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
+        } catch (Exception e){
+            log.error("Failed to update Contact table! " + e);
         }
+        log.info("Insert successfully into contact table!");
     }
 
     public List<Contact> findAll() {
@@ -64,10 +66,6 @@ public class ContactService {
             log.error("Failed to query data from Contact table! " + e);
         }
 
-        if(entries != null && entries.size() > 0) {
-            return entries;
-        } else {
-            return null;
-        }
+        return entries.size() > 0 ? entries : null;
     }
 }
