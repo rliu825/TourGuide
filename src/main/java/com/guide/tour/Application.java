@@ -15,7 +15,7 @@ public class Application{
         SpringApplication.run(Application.class, args);
     }
     @Bean
-    public CommandLineRunner initializeContact(CustomerRepository repository) {
+    public CommandLineRunner initializeContact(ContactRepository repository) {
         return (args) -> {};
     }
 
