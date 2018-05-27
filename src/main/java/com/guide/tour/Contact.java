@@ -1,6 +1,14 @@
 package com.guide.tour;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Contact {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -15,6 +23,7 @@ public class Contact {
      * @param phoneNumber
      * @param emailAddress
      */
+
     public Contact(Long id, String firstName, String lastName, String phoneNumber, String emailAddress) {
         this.id = id;
         this.firstName = firstName;
@@ -23,7 +32,7 @@ public class Contact {
         this.emailAddress = emailAddress;
     }
 
-    public Contact() {};
+    protected Contact() {};
 
     public void setId(Long id) {
         this.id = id;
