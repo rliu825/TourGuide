@@ -11,10 +11,8 @@ public class Contact extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     private String firstName;
-
-    @NonNull
+    
     private String lastName;
 
     private String phoneNumber;
