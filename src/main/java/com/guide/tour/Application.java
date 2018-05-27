@@ -17,6 +17,6 @@ public class Application{
 
     @Bean
     public CommandLineRunner initialize(ContactService service) {
-        return (args) -> {service.createContact();};
+        return (args) -> {service.createContactTable();};
     }
 }
