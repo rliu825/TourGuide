@@ -33,7 +33,7 @@ public class ContactController {
     }
 
     @PostMapping("/newcontact")
-    public String createContact(Contact contact) {
+    public String createNewContact(Contact contact) {
         if(contact != null) {
             contactRepo.insertContact(contact);
         }

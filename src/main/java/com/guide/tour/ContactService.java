@@ -27,7 +27,7 @@ public class ContactService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createContact() {
+    public void createContactTable() {
         log.info("Creating Contact table: ");
         try {
             jdbcTemplate.execute(createSQL);
