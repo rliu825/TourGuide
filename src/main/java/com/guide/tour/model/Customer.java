@@ -1,20 +1,28 @@
-package com.guide.tour;
+package com.guide.tour.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
-public class Customer {
+@Table(name = "customers")
+public class Customer extends AuditModel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NonNull
+    @Size(max = 50)
     private String firstName;
+
+    @NonNull
+    @Size(max = 50)
     private String lastName;
 
-    protected Customer() {}
+    protected Customer() {
+    }
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
@@ -24,8 +32,8 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-            "Customer[id=%d, firstName='%s', lastName='%s']",
-            id, firstName, lastName);
+                "Customer[id=%d, firstName='%s', lastName='%s']",
+                id, firstName, lastName);
     }
 
 // end::sample[]
