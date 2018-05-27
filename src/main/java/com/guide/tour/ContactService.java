@@ -37,29 +37,26 @@ public class ContactService {
     }
 
     public void insertContact(Contact contact) {
+        if(contact == null) {
+            throw new NullPointerException("contact does not exist.");
+        }
+
         // Parsing contact data
         String firstName = contact.getFirstName();
         String lastName = contact.getLastName();
         String phoneNumber = contact.getPhoneNumber();
         String emailAddress = contact.getEmailAddress();
 
-        if(contact != null) {
-            // Inserting parsed data into contact table
-            log.info("Inserting data into Contact table");
-            jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
-            log.info("Insert successfully into contact table!");
-        }
+        // Inserting parsed data into contact table
+        log.info("Inserting data into Contact table");
+        jdbcTemplate.update(insertSQL, firstName, lastName, phoneNumber, emailAddress);
+        log.info("Insert successfully into contact table!");
     }
 
     public List<Contact> findAll() {
-        List<Contact> entries = new ArrayList<>();
 
-        entries = jdbcTemplate.query(querySQL, new Object[]{}, new BeanPropertyRowMapper(Contact.class));
+        List<Contact> entries = jdbcTemplate.query(querySQL, new Object[]{}, new BeanPropertyRowMapper(Contact.class));
 
-        if(entries != null && entries.size() > 0) {
-            return entries;
-        } else {
-            return null;
-        }
+        return entries.size() > 0? entries : null;
     }
 }
