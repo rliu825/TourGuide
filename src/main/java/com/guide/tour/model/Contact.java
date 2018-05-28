@@ -1,22 +1,27 @@
-package com.guide.tour;
+package com.guide.tour.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
 
 @Entity
-public class Contact {
+@Table(name = "contacts")
+public class Contact extends AuditModel {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
+    
     private String lastName;
+
     private String phoneNumber;
+
     private String emailAddress;
 
     /**
      * Constructor for Contact model
+     *
      * @param id
      * @param firstName
      * @param lastName
@@ -32,46 +37,49 @@ public class Contact {
         this.emailAddress = emailAddress;
     }
 
-    protected Contact() {};
-
-    public void setId(Long id) {
-        this.id = id;
+    protected Contact() {
     }
+
+    ;
 
     public Long getId() {
         return id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String toString() {
