@@ -1,6 +1,6 @@
-package com.guide.tour.repository;
+package com.guide.tour.Repository;
 
-import com.guide.tour.model.Contact;
+import com.guide.tour.Model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository

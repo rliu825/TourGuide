@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html"/>
+        <title>Title</title>
+        <link rel="stylesheet" th:href="@{css/style.css}" />
+    </head>
+
+    <body>
+        <h2>Sign In</h2>
+        <form method="GET">
+            <label>Username/Email:</label>
+            <input type="text" name="userName"/><br/>
+            <label>Password:</label>
+            <input type="text" name="passWord"/><br/>
+            <label>Not yet a member?</label>
+            <a type="button" th:href="@{/signup}">Sign up</a>
+            <input type="Sign In"/>
+        </form>
+    </body>
+</html>

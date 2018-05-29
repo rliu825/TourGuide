@@ -1,4 +1,4 @@
-package com.guide.tour.model;
+package com.guide.tour.Model;
 
 import org.springframework.lang.NonNull;
 

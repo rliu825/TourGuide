@@ -1,8 +1,8 @@
 package com.guide.tour;
 
-import com.guide.tour.model.Customer;
-import com.guide.tour.repository.ContactRepository;
-import com.guide.tour.repository.CustomerRepository;
+import com.guide.tour.Model.Customer;
+import com.guide.tour.Repository.ContactRepository;
+import com.guide.tour.Repository.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -60,7 +60,7 @@ public class Application{
             repository.findByLastName("Bauer").forEach(bauer -> {
                 log.info(bauer.toString());
             });
-            // for (Customer bauer : repository.findByLastName("Bauer")) {
+            // for (Customer bauer : Repository.findByLastName("Bauer")) {
             // 	log.info(bauer.toString());
             // }
             log.info("");

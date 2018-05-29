@@ -1,6 +1,4 @@
-package com.guide.tour.model;
-
-import org.springframework.lang.NonNull;
+package com.guide.tour.Model;
 
 import javax.persistence.*;
 
@@ -15,26 +13,29 @@ public class Contact extends AuditModel {
     
     private String lastName;
 
-    private String phoneNumber;
+    private String userName;
 
     private String emailAddress;
 
+    private String passWord;
+
     /**
-     * Constructor for Contact model
+     * Constructor for Contact Model
      *
      * @param id
      * @param firstName
      * @param lastName
-     * @param phoneNumber
+     * @param userName
      * @param emailAddress
      */
 
-    public Contact(Long id, String firstName, String lastName, String phoneNumber, String emailAddress) {
+    public Contact(Long id, String firstName, String lastName, String userName, String emailAddress, String passWord) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
+        this.userName = userName;
         this.emailAddress = emailAddress;
+        this.passWord = passWord;
     }
 
     protected Contact() {
@@ -67,11 +68,11 @@ public class Contact extends AuditModel {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return userName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.userName = phoneNumber;
     }
 
     public String getEmailAddress() {
@@ -82,13 +83,18 @@ public class Contact extends AuditModel {
         this.emailAddress = emailAddress;
     }
 
+    public String getPassWord() {return passWord; }
+
+    public void setPassWord(String passWord) {this.passWord = passWord; }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ID is: " + this.id);
         sb.append(" FirstName is: " + this.firstName);
         sb.append(" LastName is: " + this.lastName);
-        sb.append(" PhoneNumber is: " + this.phoneNumber);
+        sb.append(" PhoneNumber is: " + this.userName);
         sb.append(" EmailAddress is: " + this.emailAddress);
+        sb.append(" Password is: " + this.passWord);
         return sb.toString();
     }
 }
