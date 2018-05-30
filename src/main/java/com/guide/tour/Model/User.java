@@ -1,10 +1,12 @@
 package com.guide.tour.Model;
 
+import com.guide.tour.Enum.UserType;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "contacts")
-public class Contact extends AuditModel {
+@Table(name = "users")
+public class User extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,8 +21,10 @@ public class Contact extends AuditModel {
 
     private String passWord;
 
+    private UserType userType;
+
     /**
-     * Constructor for Contact Model
+     * Constructor for User Model
      *
      * @param id
      * @param firstName
@@ -29,19 +33,17 @@ public class Contact extends AuditModel {
      * @param emailAddress
      */
 
-    public Contact(Long id, String firstName, String lastName, String userName, String emailAddress, String passWord) {
+    public User(Long id, String firstName, String lastName, String userName, String emailAddress, String passWord, UserType userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.passWord = passWord;
+        this.userType = userType;
     }
 
-    protected Contact() {
-    }
-
-    ;
+    protected User() {}
 
     public Long getId() {
         return id;
@@ -87,6 +89,10 @@ public class Contact extends AuditModel {
 
     public void setPassWord(String passWord) {this.passWord = passWord; }
 
+    public String getUserType() {return userType.toString(); }
+
+    public void setUserType(UserType userType) { this.userType = userType; }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ID is: " + this.id);
@@ -95,6 +101,7 @@ public class Contact extends AuditModel {
         sb.append(" PhoneNumber is: " + this.userName);
         sb.append(" EmailAddress is: " + this.emailAddress);
         sb.append(" Password is: " + this.passWord);
+        sb.append(" UserType is: " + this.userType.toString());
         return sb.toString();
     }
 }

@@ -9,10 +9,12 @@
 
     <body>
         <h1>Welcome to Tour Guide</h1>
-        <ul>
-            <li><a type="button" th:href="@{/allcontacts}">List Contact</a></li>
-            <li><a type="button" th:href="@{/newcontact}">Create Contact</a></li>
-        </ul>
-    </body>
+        <form method="GET" action="$@{/signin}">
+            <input type="submit" value="Sign In"/>
+        </form>
 
+        <form action="@{/signup}">
+            <input type="submit"/>
+        </form>
+    </body>
 </html>

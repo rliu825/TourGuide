@@ -1,6 +1,7 @@
 package com.guide.tour.Controller;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,9 +12,11 @@ public class MVCConfig implements WebMvcConfigurer {
      * @param registry
      */
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("home");
-        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/signin").setViewName("signin");
-        registry.addViewController("/signup").setViewName("signup");
+        registry.addViewController("/").setStatusCode(HttpStatus.OK).setViewName("home");
+        registry.addViewController("/home").setStatusCode(HttpStatus.OK).setViewName("home");
+        registry.addViewController("/signin").setStatusCode(HttpStatus.OK).setViewName("signin");
+        registry.addViewController("/signup").setStatusCode(HttpStatus.OK).setViewName("signup");
+//        registry.addViewController("/redirect/signin").setStatusCode(HttpStatus.PERMANENT_REDIRECT).setViewName("signin");
+//        registry.addViewController("/redirect/signup").setStatusCode(HttpStatus.PERMANENT_REDIRECT).setViewName("signup");
     }
 }
