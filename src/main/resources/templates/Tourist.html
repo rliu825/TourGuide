@@ -9,9 +9,10 @@
 
 <body>
 <h1>Tourist Page</h1>
-<ul>
-    <li><a type="button" th:href="@{/guide}">Become a guide?</a></li>
-    <li><a type="button" th:href="@{/tourist}">Become a tourist?</a></li>
+<ul th:each="tour : ${tours}">
+    <li th:text="${tour.location}">Tour 1</li>
+    <li th:text="${tour.location}">Tour 1</li>
+    <li>Tour 2</li>
 </ul>
 </body>
 

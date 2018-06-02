@@ -2,16 +2,12 @@ package com.guide.tour.model;
 
 import org.springframework.lang.NonNull;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "users")
-public class User extends AuditModel {
+@MappedSuperclass
+public abstract class User extends AuditModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @NonNull
     @Size(max = 50)
     private String name;
@@ -45,14 +41,6 @@ public class User extends AuditModel {
         this.language = language;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -67,14 +55,6 @@ public class User extends AuditModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    // TODO: 2018-06-01 improve toString()
-    @Override
-    public String toString() {
-        return String.format(
-            "User[id=%d, name='%s', email='%s']",
-            id, name, email);
     }
 
 }

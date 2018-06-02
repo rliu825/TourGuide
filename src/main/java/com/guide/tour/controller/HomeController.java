@@ -1,32 +1,35 @@
 package com.guide.tour.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import com.guide.tour.model.Contact;
-
+import com.guide.tour.model.Guide;
+import com.guide.tour.model.Tourist;
 import com.guide.tour.model.User;
-import com.guide.tour.repository.UserRepository;
-import com.guide.tour.service.UserService;
+import com.guide.tour.repository.GuideRepository;
+import com.guide.tour.repository.TouristRepository;
+import com.guide.tour.service.GuideService;
+import com.guide.tour.service.TouristService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
-    private UserRepository userRepo;
-    private UserService userService;
+    private TouristService touristService;
+    private TouristRepository touristRepo;
+    private GuideService guideService;
+    private GuideRepository guideRepo;
 
     @Autowired
-    public HomeController(UserService userService) {
-        this.userService = userService;
+    public HomeController(TouristService touristService) {
+        this.touristService = touristService;
     }
 
     @GetMapping("/")
     public String homepage(){
-        User user = userService.findUserById(1);
-        System.out.println(user);
+        Tourist torrist = touristService.findTouristById(1);
+        Guide guide = guideService.findGuideById(1);
+        System.out.println(torrist);
         return "Home";
     }
     @GetMapping("/guide")
@@ -35,15 +38,8 @@ public class HomeController {
     }
 
     @GetMapping("/tourist")
-    public String touristpage(){
+    public String touristpage() {
         return "Tourist";
-    }
-
-    @GetMapping("/service")
-    public String listContacts(Model model) {
-        List<Contact> contacts = (ArrayList) userRepo.findAll();
-        model.addAttribute("contacts", contacts);
-        return "AllContacts";
     }
 
 

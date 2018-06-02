@@ -1,10 +1,12 @@
 package com.guide.tour;
 
 import com.guide.tour.model.Customer;
-import com.guide.tour.model.User;
+import com.guide.tour.model.Guide;
+import com.guide.tour.model.Tourist;
 import com.guide.tour.repository.ContactRepository;
 import com.guide.tour.repository.CustomerRepository;
-import com.guide.tour.repository.UserRepository;
+import com.guide.tour.repository.GuideRepository;
+import com.guide.tour.repository.TouristRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -27,9 +29,16 @@ public class Application{
     }
 
     @Bean
-    public CommandLineRunner initializeUser(UserRepository repository) {
+    public CommandLineRunner initializeTourist(TouristRepository repository) {
         return (args) -> {
-            repository.save(new User("Boolean", "Chinese","7788981234","torres@ca.com"));
+            repository.save(new Tourist("Boolean", "Chinese","7788981234","torres@ca.com"));
+        };
+    }
+
+    @Bean
+    public CommandLineRunner initializeGuide(GuideRepository repository) {
+        return (args) -> {
+            repository.save(new Guide("EddieGuide", "English","123456678","eddie@ca.com"));
         };
     }
 
