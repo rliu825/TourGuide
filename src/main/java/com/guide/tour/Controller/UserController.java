@@ -30,27 +30,20 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String getSignUp() {
+    public String getSignUp(Model model) {
+        model.addAttribute("user",new User());
         return "signup";
     }
 
     @PostMapping("/signup")
     public String postSignUp(User user) {
+        // Incomplete
+        int newId = userRepo.findAll().size()+1;
+        user.setId((long) newId);
+        user.toString();
         if(user != null) {
             userRepo.save(user);
         }
         return "landing";
-    }
-
-    @GetMapping("/redirect/signin")
-    public String getRedirectSignIn() {
-        return "signin";
-    }
-
-    @GetMapping("/allcontacts")
-    public String listContacts(Model model) {
-        List<User> users = (ArrayList) userRepo.findAll();
-        model.addAttribute("users", users);
-        return "AllContacts";
     }
 }

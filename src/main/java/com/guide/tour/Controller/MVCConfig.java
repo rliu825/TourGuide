@@ -16,7 +16,5 @@ public class MVCConfig implements WebMvcConfigurer {
         registry.addViewController("/home").setStatusCode(HttpStatus.OK).setViewName("home");
         registry.addViewController("/signin").setStatusCode(HttpStatus.OK).setViewName("signin");
         registry.addViewController("/signup").setStatusCode(HttpStatus.OK).setViewName("signup");
-//        registry.addViewController("/redirect/signin").setStatusCode(HttpStatus.PERMANENT_REDIRECT).setViewName("signin");
-//        registry.addViewController("/redirect/signup").setStatusCode(HttpStatus.PERMANENT_REDIRECT).setViewName("signup");
     }
 }
