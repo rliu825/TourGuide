@@ -9,5 +9,9 @@
 
     <body>
         <h2>Welcome User: </h2>
+
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Sign Out"/>
+        </form>
     </body>
 </html>

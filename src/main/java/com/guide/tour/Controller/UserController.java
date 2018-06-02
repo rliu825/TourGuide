@@ -29,6 +29,11 @@ public class UserController {
         return "signin";
     }
 
+    @PostMapping("/signin")
+    public String postSignIn() {
+        return "redirect:landing.html";
+    }
+
     @GetMapping("/signup")
     public String getSignUp(Model model) {
         model.addAttribute("user",new User());
@@ -44,6 +49,6 @@ public class UserController {
         if(user != null) {
             userRepo.save(user);
         }
-        return "landing";
+        return "redirect:landing.html";
     }
 }
