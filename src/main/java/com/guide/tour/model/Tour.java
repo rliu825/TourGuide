@@ -37,6 +37,11 @@ public class Tour extends AuditModel{
         this.description = description;
     }
 
+    public Tour(String location, String description) {
+        this.location = location;
+        this.description = description;
+    }
+
     protected Tour() {};
 
     @Override
