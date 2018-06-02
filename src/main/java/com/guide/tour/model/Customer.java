@@ -36,8 +36,6 @@ public class Customer extends AuditModel {
                 id, firstName, lastName);
     }
 
-// end::sample[]
-
     public Long getId() {
         return id;
     }

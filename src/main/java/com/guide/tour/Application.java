@@ -1,8 +1,10 @@
 package com.guide.tour;
 
 import com.guide.tour.model.Customer;
+import com.guide.tour.model.User;
 import com.guide.tour.repository.ContactRepository;
 import com.guide.tour.repository.CustomerRepository;
+import com.guide.tour.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +24,13 @@ public class Application{
     @Bean
     public CommandLineRunner initializeContact(ContactRepository repository) {
         return (args) -> {};
+    }
+
+    @Bean
+    public CommandLineRunner initializeUser(UserRepository repository) {
+        return (args) -> {
+            repository.save(new User("Boolean", "Chinese","7788981234","torres@ca.com"));
+        };
     }
 
     /*
