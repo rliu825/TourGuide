@@ -13,10 +13,14 @@ public class TourService {
     private TourRepository tourRepository;
 
     //services
-    public Tour findTouristById(long id) {
+    public Tour findTourById(long id) {
         return tourRepository.findById(id);
     }
     public List<Tour> findAll() {
         return tourRepository.findAll();
+    }
+
+    public void updateTour(Tour tour) {
+        tourRepository.save(tour);
     }
 }

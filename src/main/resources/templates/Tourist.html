@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html"/>
     <title>Tourist Page</title>
     <link rel="stylesheet" th:href="@{css/style.css}" />
+    <script src="/js/tourist.js"></script>
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
 <h1>Tourist Page</h1>
 <ul th:each="tour : ${tours}">
-    <li th:text="${tour.location}">Tour 1</li>
+    <li th:text="${tour.location}" >Tour 1</li>
     <li th:text="${tour.description}">Tour 1</li>
-    <li>Tour 2</li>
+    <li>
+        <form method="post" th:action="@{/guide/{id}(id=${tour.id})}" th:object="${tour}">
+            <!--<input type="hidden" th:field="${tour.getId()}" />-->
+            <button type="submit">Select Service</button>
+        </form>
+        <!--<a th:href="@{/guide/{id}(id=${tour.id})}">Select Service</a>-->
+    </li>
 </ul>
 </body>
 

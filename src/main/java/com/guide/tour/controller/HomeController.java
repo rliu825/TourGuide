@@ -11,6 +11,7 @@ import com.guide.tour.service.GuideService;
 import com.guide.tour.service.TourService;
 import com.guide.tour.service.TouristService;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,13 +41,22 @@ public class HomeController {
 
         return "Home";
     }
+    @PostMapping("/guide/{id}")
+    public String postTour(@PathVariable Long id){
+        Tour tour = tourService.findTourById(id);
+        tour.setDescription("eddie!!!!!");
+        tourService.updateTour(tour);
+        return "redirect:/tourist";
+    }
+
     @GetMapping("/guide")
-    public String guidepage(){
+    public String guidepage(Model model) {
+//        ArrayList<Tour> tours = (ArrayList<Tour>) tourService.findAll();
         return "Guide";
     }
 
     @GetMapping("/tourist")
-    public String touristpage(Model model) {
+    public String touristPage(Model model) {
         ArrayList<Tour> tours = (ArrayList<Tour>) tourService.findAll();
         model.addAttribute("tours",tours);
         return "Tourist";

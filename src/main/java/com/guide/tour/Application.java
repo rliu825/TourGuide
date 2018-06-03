@@ -32,8 +32,8 @@ public class Application{
     @Bean
     public CommandLineRunner initializeService(TourRepository repository) {
         return (args) -> {
-            repository.save(new Tour("Vancouver","SFU tour"));
-            repository.save(new Tour("San Francisco","Stanford Tour"));
+//            repository.save(new Tour("Vancouver","SFU tour"));
+//            repository.save(new Tour("San Francisco","Stanford Tour"));
         };
     }
 
