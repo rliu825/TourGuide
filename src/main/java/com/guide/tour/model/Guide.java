@@ -1,5 +1,9 @@
 package com.guide.tour.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -19,6 +23,14 @@ public class Guide extends User {
     }
 
     protected Guide() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     // TODO: 2018-06-01 improve toString()

@@ -23,4 +23,8 @@ public class TourService {
     public void updateTour(Tour tour) {
         tourRepository.save(tour);
     }
+
+    public void save(Tour tour) {
+        tourRepository.save(tour);
+    }
 }

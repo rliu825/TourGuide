@@ -15,8 +15,8 @@
     <li th:text="${tour.location}" >Tour 1</li>
     <li th:text="${tour.description}">Tour 1</li>
     <li>
-        <form method="post" th:action="@{/guide/{id}(id=${tour.id})}" th:object="${tour}">
-            <!--<input type="hidden" th:field="${tour.getId()}" />-->
+        <form method="post" th:action="@{/guide/{id}(id=${tour.id})}">
+            <input type="hidden" name="location" th:value="${tour.location}+'eeppoo'" />
             <button type="submit">Select Service</button>
         </form>
         <!--<a th:href="@{/guide/{id}(id=${tour.id})}">Select Service</a>-->

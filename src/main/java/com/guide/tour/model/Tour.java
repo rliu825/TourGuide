@@ -1,5 +1,9 @@
 package com.guide.tour.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +15,12 @@ public class Tour extends AuditModel{
     private Long id;
     private String location;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "guide_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Guide guide;
 
     public Long getId() {
         return id;
@@ -35,6 +45,14 @@ public class Tour extends AuditModel{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Guide getGuide() {
+        return guide;
+    }
+
+    public void setGuide(Guide guide) {
+        this.guide = guide;
     }
 
     public Tour(String location, String description) {

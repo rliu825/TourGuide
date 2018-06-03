@@ -1,7 +1,9 @@
 package com.guide.tour;
 
 import com.guide.tour.model.Customer;
+import com.guide.tour.model.Guide;
 import com.guide.tour.model.Tour;
+import com.guide.tour.model.Tourist;
 import com.guide.tour.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +27,14 @@ public class Application{
     }
 
     @Bean
-    public CommandLineRunner initializeTourist(TouristRepository repository) {
+    public CommandLineRunner initializeTouristAndGuide(TouristRepository tRepository, GuideRepository gRepository) {
         return (args) -> {
+//            tRepository.save(new Tourist("Torres", "English", "778111", "aaa@gmail.com"));
+//            tRepository.save(new Tourist("Michael", "Mandarin", "778222", "bbb@qq.com"));
+//            tRepository.save(new Tourist("Candy", "German", "778333", "ccc@hotmail.com"));
+//            gRepository.save(new Guide("Ray", "Spanish", "604111", "ddd@sfu.ca"));
+//            gRepository.save(new Guide("Eddie", "Cantonese", "604222", "eee@phim.ca"));
+//            gRepository.save(new Guide("Jack", "Italiano", "604333", "fff@papa.ca"));
         };
     }
     @Bean
