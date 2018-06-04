@@ -13,6 +13,9 @@ public class TouristService {
     private TouristRepository touristRepository;
 
     //services
+    public Tourist save(Tourist tourist) {
+        return touristRepository.save(tourist);
+    }
     public Tourist findTouristById(long id) {
         return touristRepository.findById(id);
     }

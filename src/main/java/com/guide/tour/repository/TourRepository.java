@@ -1,13 +1,15 @@
 package com.guide.tour.repository;
 
+import com.guide.tour.model.Guide;
 import com.guide.tour.model.Tour;
-import com.guide.tour.model.Tourist;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface TourRepository extends JpaRepository<Tour, Long> {
     Tour findById(long id);
 
-    Page<Tour> findByGuideId(Long guideId, Pageable pageable);
+    List<Tour> findToursByGuide(Guide guide);
+
+    void delete(Tour tour);
 }

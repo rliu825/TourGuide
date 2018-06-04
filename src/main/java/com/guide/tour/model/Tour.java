@@ -5,6 +5,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tours")
@@ -21,6 +23,23 @@ public class Tour extends AuditModel{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Guide guide;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            },
+            mappedBy = "tours")
+    private Set<Tourist> tourists = new HashSet<>();
+
+    public Tour(String location, String description) {
+        this.location = location;
+        this.description = description;
+    }
+
+    protected Tour() {};
 
     public Long getId() {
         return id;
@@ -55,12 +74,13 @@ public class Tour extends AuditModel{
         this.guide = guide;
     }
 
-    public Tour(String location, String description) {
-        this.location = location;
-        this.description = description;
+    public Set<Tourist> getTourists() {
+        return tourists;
     }
 
-    protected Tour() {};
+    public void setTourists(Set<Tourist> tourists) {
+        this.tourists = tourists;
+    }
 
     @Override
     public String toString() {

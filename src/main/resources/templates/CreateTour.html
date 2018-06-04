@@ -5,7 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html"/>
     <title>Spring Boot Contacts</title>
     <link rel="stylesheet" th:href="@{css/style.css}" />
-    <link rel="stylesheet" th:href="@{bootstrap4/css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{/bootstrap4/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/uikit/css/uikit.min.css}" />
+
 </head>
 
 <body>
@@ -13,13 +15,14 @@
     <h3>Create a Service:</h3>
     <form method="post" th:action="@{/guide/{id}/create(id=${guideId})}">
         <label>Location:</label>
-        <input type="text" name="location"/><br/>
+        <input class="uk-input" placeholder="Travel Destination" type="text" name="location"/><br/>
         <label>Description:</label>
-        <input type="text" name="description"/><br/>
-        <input type="submit"/>
+        <textarea class="uk-textarea" rows="5" placeholder="Your Description" type="text" name="description"></textarea><br><br>
+        <input class="uk-button uk-button-secondary" type="submit"/>
     </form>
 
-<a class ="btn btn-info" th:href="@{/}">Back to Homepage</a>
+    <br>
+<a class ="btn btn-light" th:href="@{/guide/{id}(id=${guideId})}">Back to Profile</a>
 
 <script th:src="@{jquery/jquery-3.3.1.min.js}"></script>
 <script th:src="@{bootstrap4/js/bootstrap.js}"></script>

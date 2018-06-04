@@ -1,5 +1,6 @@
 package com.guide.tour.service;
 
+import com.guide.tour.model.Guide;
 import com.guide.tour.model.Tour;
 import com.guide.tour.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class TourService {
 
     public void save(Tour tour) {
         tourRepository.save(tour);
+    }
+
+    public List<Tour> findToursByGuide(Guide guide) {
+        return tourRepository.findToursByGuide(guide);
+    }
+
+    public void deleteTour(Tour tour) {
+        tourRepository.delete(tour);
     }
 }

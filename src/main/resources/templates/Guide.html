@@ -5,16 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html"/>
     <title>Guide Page</title>
     <link rel="stylesheet" th:href="@{css/style.css}" />
+    <link rel="stylesheet" th:href="@{/bootstrap4/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/uikit/css/uikit.min.css}" />
 </head>
 
 <body>
 <h1>Guide Page</h1>
 Inbox  -- My Services
     <ul th:each="tour : ${displaytours}">
-        <li>
+        <li class="uk-alert uk-alert-success">
             <b>Location: </b><span th:text="${tour.getLocation()}">location</span>,
-            <b>Description: </b><span th:text="${tour.getDescription()}">description</span> :
+            <b>Description: </b><span th:text="${tour.getDescription()}">description</span> ---
+            <b class="uk-text-danger">Enrollment: </b><span th:text="${#sets.size(tour.getTourists())}">Enrollment Number</span>
+            <form method="post" th:action="@{/guide/{guideId}/tour/{tourId}/delete(guideId=${guideId}, tourId=${tour.getId()})}">
+                <button class="uk-button uk-button-default" type="submit">delete</button>
+            </form>
         </li>
+
     </ul>
 
     <a class ="btn btn-success" th:href="@{/guide/{id}/create(id=${guideId})}">Create Service</a>

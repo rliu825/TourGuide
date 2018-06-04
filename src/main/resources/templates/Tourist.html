@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html"/>
     <title>Tourist Page</title>
-    <link rel="stylesheet" th:href="@{css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/uikit/css/uikit.min.css}" />
     <script src="/js/tourist.js"></script>
     <script src="/jquery/jquery-3.3.1.min.js"></script>
 </head>
@@ -12,14 +13,19 @@
 <body>
 <h1>Tourist Page</h1>
 <ul th:each="tour : ${tours}">
-    <li th:text="${tour.location}" >Tour 1</li>
-    <li th:text="${tour.description}">Tour 1</li>
     <li>
-        <form method="post" th:action="@{/guide/{id}(id=${tour.id})}">
-            <input type="hidden" name="location" th:value="${tour.location}+'eeppoo'" />
-            <button type="submit">Select Service</button>
+        <div class="uk-card uk-card-default uk-card-body">
+            <h3 th:text="${'Location: ' + tour.location}" >Tour Location</h3>
+            <h3 th:text="${'Description: ' + tour.description}">Tour Description</h3>
+        </div>
+    </li>
+    <li>
+        <form th:if="${not #sets.contains(tourist.getTours(), tour)}" method="post" th:action="@{/tourist/{tid}(tid=${touristId}, tourId=${tour.id})}">
+            <button class="uk-button uk-button-primary uk-button-small" type="submit">Select Service</button>
         </form>
-        <!--<a th:href="@{/guide/{id}(id=${tour.id})}">Select Service</a>-->
+        <form th:if="${#sets.contains(tourist.getTours(), tour)}" method="post" th:action="@{/tourist/{touristId}/tour/{tourId}/delete(touristId=${touristId}, tourId=${tour.id})}">
+            <button class="uk-button uk-button-danger uk-button-small" type="submit">Unselect</button>
+        </form>
     </li>
 </ul>
 </body>
