@@ -96,11 +96,6 @@ public class HomeController {
             System.out.println("[ERROR-d]Guide of id: " + guideId + " doesn't have tour of id: " + tourId);
         }
 
-        List<Tourist> tourists = touristService.findAll();
-        for(Tourist tourist : tourists) {
-            tourist.getTours().remove(tour);
-            touristService.save(tourist);
-        }
         tourService.deleteTour(tour);
 
         String redirectionURL = "redirect:/guide/" + guideId;
@@ -167,5 +162,12 @@ public class HomeController {
         String redirectionURL = "redirect:/tourist/" + touristId;
         return redirectionURL;
     }
+
+//    @GetMapping("/fff")
+//    public String deleteShit() {
+//        Guide guide = guideService.findGuideById(1);
+//        guideService.deleteGuide(guide);
+//        return "Home";
+//    }
 
 }

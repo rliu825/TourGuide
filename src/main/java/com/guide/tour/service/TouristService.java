@@ -23,4 +23,8 @@ public class TouristService {
         return touristRepository.findAll();
     }
 
+    public void deleteTourist(Tourist tourist) {
+        touristRepository.delete(tourist);
+    }
+
 }
