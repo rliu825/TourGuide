@@ -19,11 +19,6 @@ public class ContactController {
         this.contactRepo = contactRepo;
     }
 
-    @GetMapping("/")
-    public String homepage(){
-        return "TourGuideHome";
-    }
-
     @GetMapping("/allcontacts")
     public String listContacts(Model model) {
         List<Contact> contacts = (ArrayList) contactRepo.findAll();
@@ -43,4 +38,5 @@ public class ContactController {
         }
         return "TourGuideHome";
     }
+
 }
